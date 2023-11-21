@@ -4,9 +4,6 @@ namespace Sainsys\ThreadPopupLink\Repository;
 
 use XF\Db\Exception;
 use XF\Entity\Thread;
-use XF\Mvc\Entity\Entity;
-use XF\Mvc\Entity\Finder;
-use XF\Mvc\Entity\Manager;
 use XF\Mvc\Entity\Repository;
 
 class ThreadLink extends Repository

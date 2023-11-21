@@ -2,7 +2,7 @@
 
 namespace Sainsys\ThreadPopupLink\XF\Pub\Controller;
 
-use Truonglv\ThreadCustomFieldsLink\Repository\ThreadLink;
+use Sainsys\ThreadPopupLink\Repository\ThreadLink;
 use XF\Mvc\ParameterBag;
 class Forum extends XFCP_Forum
 {

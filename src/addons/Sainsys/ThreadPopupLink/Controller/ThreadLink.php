@@ -8,12 +8,12 @@ class ThreadLink extends AbstractController
 {
     public function actionIndex()
     {
-        // Логика для отображения списка ссылок
+        // Логика для отображения списка  ссылок по умолчанию
     }
 
     public function actionEdit()
     {
-        // Логика для редактирования ссылки
+        // Логика для редактирования ссылок по умолчанию
     }
 
     public function actionSave()
