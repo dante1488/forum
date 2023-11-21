@@ -2,6 +2,7 @@
 
 namespace Sainsys\ThreadPopupLink;
 
+use Truonglv\ThreadCustomFieldsLink\DevHelper\SetupTrait;
 use XF\AddOn\AbstractSetup;
 use XF\AddOn\StepRunnerInstallTrait;
 use XF\AddOn\StepRunnerUninstallTrait;
@@ -10,6 +11,7 @@ use XF\Db\Schema\Create;
 
 class Setup extends AbstractSetup
 {
+    use SetupTrait;
 	use StepRunnerInstallTrait;
 	use StepRunnerUpgradeTrait;
 	use StepRunnerUninstallTrait;

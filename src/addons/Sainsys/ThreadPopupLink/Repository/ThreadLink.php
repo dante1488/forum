@@ -2,6 +2,7 @@
 
 namespace Sainsys\ThreadPopupLink\Repository;
 
+use XF\Db\Exception;
 use XF\Entity\Thread;
 use XF\Mvc\Entity\Entity;
 use XF\Mvc\Entity\Finder;
@@ -12,6 +13,8 @@ class ThreadLink extends Repository
 {
 
     /**
+     * Получаем ссылки к теме.
+     *
      * @param Thread $thread
      * @return \XF\Mvc\Entity\Finder
      */
@@ -21,16 +24,38 @@ class ThreadLink extends Repository
         $visitor = \XF::visitor();
 
         return $this->finder('Sainsys\ThreadPopupLink:ThreadLink')
-            ->where('link_thread_id', $thread->thread_id)
-            ->with('Thread', true)
-            ->with('Thread.User')
-            ->with('Thread.Forum.Node.Permissions|' . $visitor->permission_combination_id)
-            ->where('Thread.discussion_state', 'visible');
+            ->where('thread_id', $thread->thread_id);
     }
 
-    public function saveLinkData(array $linkData)
+    /**
+     * Добавляет ссылки к теме.
+     *
+     * @param int $threadId ID темы
+     * @param array $links Массив ссылок
+     * @return void
+     */
+
+    public function saveLinkData($threadId, array $links)
     {
-        // Логика для сохранения или обновления данных о ссылке
+        foreach ($links['links'] as $linkData) {
+            try{
+                if (isset($linkData['title'], $linkData['url'], $linkData['color'], $linkData['enable'])) {
+                    /** @var \Sainsys\ThreadPopupLink\Entity\ThreadLink $link */
+                    $link = $this->em->create('Sainsys\ThreadPopupLink:ThreadLink');
+
+                    $link->thread_id = $threadId;
+                    $link->title = $linkData['title'];
+                    $link->url = $linkData['url'];
+                    $link->color = $linkData['color'];
+                    $link->enable = $linkData['enable'];
+
+                    $link->save();
+                }
+            } catch (Exception $e){
+                $this->error(\XF::phrase('something_wrong_with_db'));
+            }
+
+        }
     }
 
 }

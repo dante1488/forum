@@ -7,9 +7,16 @@ use XF\Mvc\Entity\Entity;
 
 class ThreadLink extends Entity
 {
+    /**
+     * Определение структуры сущности
+     *
+     * @param Structure $structure
+     * @return Structure
+     */
+
     public static function getStructure(Structure $structure)
     {
-        $structure->table = 'thread_popup_links';
+        $structure->table = 'xf_thread_popup_link';
         $structure->shortName = 'Sainsys\ThreadPopupLink:Link';
         $structure->primaryKey = 'link_id';
         $structure->columns = [
@@ -19,6 +26,15 @@ class ThreadLink extends Entity
             'url' => ['type' => self::STR, 'required' => true],
             'enable' => ['type' => self::INT, 'required' => true],
             'color' => ['type' => self::STR, 'default' => '#000000'],
+        ];
+
+        $structure->relations = [
+            'Thread' => [
+                'type' => self::TO_ONE,
+                'entity' => 'XF:Thread',
+                'conditions' => 'thread_id',
+                'primary' => true
+            ]
         ];
 
         return $structure;
