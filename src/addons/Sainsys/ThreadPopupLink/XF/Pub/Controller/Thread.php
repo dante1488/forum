@@ -3,7 +3,6 @@
 namespace Sainsys\ThreadPopupLink\XF\Pub\Controller;
 
 use Sainsys\ThreadPopupLink\Repository\ThreadLink;
-use Truonglv\ThreadCustomFieldsLink\Data\LinkData;
 use XF\Mvc\ParameterBag;
 use XF\Mvc\Reply\View;
 

@@ -6,7 +6,6 @@ use XF\Mvc\Entity\Structure;
 use XF\Mvc\ParameterBag;
 class Thread extends XFCP_Thread
 {
-
     public function _postSave()
     {
         parent::_postSave();
